@@ -1,62 +1,77 @@
-# Express.js RESTful API Assignment
+🛍️ **Product API**
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+A simple **Express.js + MongoDB API** for managing products.  
+Includes **CRUD routes**, **middleware** (logging, authentication, validation), and **error handling**.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## 🚀 How to Run the Server
 
-## Getting Started
+**1️⃣ Install dependencies**
+```bash
+npm install
+```
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
+**2️⃣ Create a `.env` file** in your project root  
+```
+MONGO_URI=mongodb+srv://<your-connection-string>
+API_KEY=yourSecretKey
+PORT=3000
+```
 
-## Files Included
+**3️⃣ Start the server**
+```bash
+npm run dev
+```
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+Server will run on:  
+👉 [http://localhost:3000](http://localhost:3000)
 
-## Requirements
+---
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+## 🧠 Middleware Used
 
-## API Endpoints
+- **Request Logging:** Logs every request (method, URL, and timestamp)  
+- **Authentication:** Uses an `x-api-key` header to restrict access to protected routes  
+- **Validation:** Checks that all required product fields (`name`, `price`, `category`) exist before saving  
+- **Error Handling:** Returns consistent JSON error messages for invalid or failed requests  
 
-The API will have the following endpoints:
+---
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+## 📦 API Endpoints
 
-## Submission
+### ➤ `GET /`
+**Returns a welcome message.**  
+**Response:**
+```json
+"Welcome to the Product API! Go to /api/products to see all products."
+```
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+---
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+### ➤ `GET /api/products`
+**Get all products.**  
 
-## Resources
+### ➤ `GET /api/products/:id`
+**Get a single product by its ID.**  
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+### ➤ `POST /api/products`
+**Create a new product.**
+
+### ➤ `PUT /api/products/:id`
+**Update an existing product by ID.**
+
+### ➤ `DELETE /api/products/:id`
+**Delete a product by its ID.**  
+
+
+## ⚠️ Error Responses / Status Codes
+
+### 400 – Validation Error
+Occurs when required fields (`name`, `price`, `category`) are missing or invalid.
+
+### 404 – Not Found
+Occurs when a product with the specified ID does not exist.
+
+### 500 – Internal Server Error
+Occurs when an unexpected error happens on the server (e.g., database connection issues).
